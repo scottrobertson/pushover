@@ -37,10 +37,10 @@ class Client
 
     private function send()
     {
-        $data = array_merge($this->data, [
+        $data = array_merge($this->data, array(
             'token' => $this->token,
             'user' => $this->user
-        ]);
+        ));
 
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $this->url);

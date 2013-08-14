@@ -7,21 +7,21 @@ class ClientTest extends \PHPUnit_Framework_TestCase
 {
     public function testInit()
     {
-        $client = new Client([
+        $client = new Client(array(
             'token' => '',
             'user' => ''
-        ]);
+        ));
 
         $this->assertTrue(is_object($client));
     }
 
     public function testInitWithUrl()
     {
-        $client = new Client([
+        $client = new Client(array(
             'token' => '',
             'user' => '',
             'url' => 'http://google.com'
-        ]);
+        ));
 
         $this->assertTrue(is_object($client));
         $this->assertEquals('http://google.com', $client->url);
@@ -38,10 +38,10 @@ class ClientTest extends \PHPUnit_Framework_TestCase
 
     public function testPushNoMessage()
     {
-        $client = new Client([
+        $client = new Client(array(
             'token' => '',
             'user' => ''
-        ]);
+        ));
 
         $this->assertTrue(is_object($client));
 
@@ -50,21 +50,19 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         } catch (\Scottymeuk\Pushover\Exception $e) {
             return;
         }
-
-
     }
 
     public function testPush()
     {
-        $client = new Client([
+        $client = new Client(array(
             'token' => '',
             'user' => ''
-        ]);
+        ));
 
         $this->assertTrue(is_object($client));
 
-        $push = $client->push([
+        $push = $client->push(array(
             'message' => 'test'
-        ]);
+        ));
     }
 }

@@ -4,7 +4,7 @@ namespace Scottymeuk\Pushover;
 
 class Client
 {
-    public $url = 'https://api.pushover.net/1/messages.json';
+    public $pushover_url = 'https://api.pushover.net/1/messages.json';
     public $token = null;
     public $data = array();
 
@@ -16,7 +16,7 @@ class Client
 
         $this->token = $options['token'];
         if (isset($options['url'])) {
-            $this->url = $options['url'];
+            $this->pushover_url = $options['url'];
         }
     }
 
@@ -51,7 +51,7 @@ class Client
         ));
 
         $curl = curl_init();
-        curl_setopt($curl, CURLOPT_URL, $this->url);
+        curl_setopt($curl, CURLOPT_URL, $this->pushover_url);
         curl_setopt($curl, CURLOPT_POST, true);
         curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);

@@ -22,7 +22,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         ));
 
         $this->assertTrue(is_object($client));
-        $this->assertEquals('http://google.com', $client->url);
+        $this->assertEquals('http://google.com', $client->pushover_url);
     }
 
     public function testInitFail()

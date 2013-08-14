@@ -5,41 +5,49 @@ namespace Scottymeuk\Pushover;
 class Client
 {
     public $url = 'https://api.pushover.net/1/messages.json';
-
     public $token = null;
-    public $user = null;
-
     public $data = array();
 
     public function __construct($options = array())
     {
-        if (! isset($options['token']) || ! isset($options['user'])) {
-            throw new Exception('You must supply a token and user');
+        if (! isset($options['token'])) {
+            throw new Exception('You must supply a token');
         }
 
         $this->token = $options['token'];
-        $this->user = $options['user'];
-
         if (isset($options['url'])) {
             $this->url = $options['url'];
         }
     }
 
-    public function push(Array $data = array())
+    public function __set($key, $data)
     {
-        $this->data = $data;
+        $this->data[$key] = $data;
+    }
+
+    public function __get($key)
+    {
+        if (! isset($this->data[$key])) {
+            return null;
+        }
+
+        return $this->data[$key];
+    }
+
+    public function __isset($key)
+    {
+        return isset($this->data[$key]);
+    }
+
+    public function push($user)
+    {
         if (! isset($this->data['message'])) {
             throw new Exception('You must supply a message');
         }
 
-        return $this->send();
-    }
-
-    private function send()
-    {
         $data = array_merge($this->data, array(
             'token' => $this->token,
-            'user' => $this->user
+            'user' => $user
         ));
 
         $curl = curl_init();

@@ -11,10 +11,9 @@ include __DIR__ . '/vendor/autoload.php';
 
 $pushover = new \Scottymeuk\Pushover\Client([
     'token' => '',
-    'user' => ''
 ]);
+$pushover->message = 'testing';
 
-$send = $pushover->push([
-    'message' => 'Testing'
-]);
+$token = '';
+$push = $pushover->push($token);
 ```

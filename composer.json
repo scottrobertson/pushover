@@ -1,4 +1,18 @@
 {
+    "name": "scottymeuk/pushover",
+    "type": "library",
+    "description": "Simple pushover.net library",
+    "keywords": ["pushover","push notifications"],
+    "homepage": "http://github.com/scottymeuk/pushover",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Scott Robertson",
+            "email": "scottymeuk@gmail.com",
+            "homepage": "http://scottrobertson.me",
+            "role": "Developer"
+        }
+    ],
     "require" : {
         "php": ">=5.4"
     },

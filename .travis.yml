@@ -12,5 +12,5 @@ before_script:
   - phpenv rehash
 
 script:
-  - phpcs --standard=psr2 src/
+  - phpcs --standard=psr2 lib/
   - phpunit --coverage-text

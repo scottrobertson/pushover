@@ -4,12 +4,12 @@ namespace Scottymeuk\Pushover;
 
 class Client
 {
-    private $url = 'https://api.pushover.net/1/messages.json';
+    public $url = 'https://api.pushover.net/1/messages.json';
 
-    private $token = null;
-    private $user = null;
+    public $token = null;
+    public $user = null;
 
-    private $data = array();
+    public $data = array();
 
     public function __construct($options = array())
     {

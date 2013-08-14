@@ -2,7 +2,7 @@
 
 namespace Scottymeuk\Pushover;
 
-class Exception
+class Exception extends \Exception
 {
 
 }

@@ -14,6 +14,12 @@ $pushover = new \Scottymeuk\Pushover\Client([
 ]);
 $pushover->message = 'testing';
 
-$token = '';
+// Push Single
 $push = $pushover->push($token);
+
+// Push Multiple
+$push = $pushover->pushMultiple([
+    $token1,
+    $token2
+]);
 ```

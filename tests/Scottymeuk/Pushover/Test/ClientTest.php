@@ -1,9 +1,10 @@
 <?php
 
 namespace Scottymeuk\Pushover\Test;
+use Scottymeuk\Pushover\Test\TestCase;
 use Scottymeuk\Pushover\Client;
 
-class ClientTest extends \PHPUnit_Framework_TestCase
+class ClientTest extends TestCase
 {
     public function testInit()
     {

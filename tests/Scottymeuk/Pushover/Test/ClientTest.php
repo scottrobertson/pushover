@@ -1,9 +1,10 @@
 <?php
 
 namespace Scottymeuk\Pushover\Test;
+use Scottymeuk\Pushover\Test\TestCase;
 use Scottymeuk\Pushover\Client;
 
-class ClientTest extends \PHPUnit_Framework_TestCase
+class ClientTest extends TestCase
 {
     public function testInit()
     {
@@ -18,11 +19,11 @@ class ClientTest extends \PHPUnit_Framework_TestCase
     {
         $client = new Client(array(
             'token' => '',
-            'url' => 'http://google.com'
+            'api' => 'http://google.com'
         ));
 
         $this->assertTrue(is_object($client));
-        $this->assertEquals('http://google.com', $client->pushover_url);
+        $this->assertEquals('http://google.com', $client->getApiUrl());
     }
 
     public function testInitFail()

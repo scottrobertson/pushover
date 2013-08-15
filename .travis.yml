@@ -8,7 +8,6 @@ php:
 before_script:
   - composer self-update
   - composer install
-  - phpenv rehash
 
 script:
   - phpunit --coverage-text

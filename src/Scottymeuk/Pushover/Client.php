@@ -4,18 +4,19 @@ namespace Scottymeuk\Pushover;
 
 class Client
 {
-    /**
-     * The pushover.net endpoint
-     * @var string
-     */
-    public $pushover_url = 'https://api.pushover.net/1/messages.json';
 
     /**
-     * The token to auth requests with
-     * @var string
+     * Protected
      */
-    public $token;
-    public $data = array();
+    protected $api_url = 'https://api.pushover.net/1/messages.json';
+
+
+    /**
+     * Data Attributes
+     * @var array
+     */
+    protected $data = array();
+
 
     /**
      * Class constructor to gather token and url
@@ -23,15 +24,19 @@ class Client
      */
     public function __construct($options = array())
     {
+
+        // Set token
         if (! isset($options['token'])) {
             throw new Exception('You must supply a token');
         }
-
         $this->token = $options['token'];
-        if (isset($options['url'])) {
-            $this->pushover_url = $options['url'];
+
+        // Set URL
+        if (isset($options['api'])) {
+            $this->api_url = $options['api'];
         }
     }
+
 
     /**
      * Magic __set method
@@ -42,6 +47,7 @@ class Client
     {
         $this->data[$key] = $data;
     }
+
 
     /**
      * Magic __get method
@@ -57,6 +63,7 @@ class Client
         return $this->data[$key];
     }
 
+
     /**
      * isset() magic method
      * @param  string  $key Variable name
@@ -67,12 +74,31 @@ class Client
         return isset($this->data[$key]);
     }
 
+
+    /**
+     * Get token
+     */
+    public function getToken()
+    {
+        return $this->data['token'];
+    }
+
+
+    /**
+     * Get URL
+     */
+    public function getApiUrl()
+    {
+        return $this->api_url;
+    }
+
+
     /**
      * Push to multiple users
      * @param  Array  $users Array of users
      * @return bool        Did any of them fail?
      */
-    public function pushMultiple(Array $users)
+    public function pushMultiple(array $users)
     {
         $failed = array();
         foreach ($users as $user) {
@@ -85,6 +111,7 @@ class Client
         return !count($failed);
     }
 
+
     /**
      * Push a notification to a specific user
      * @param  string $user The user token
@@ -96,19 +123,20 @@ class Client
             throw new Exception('You must supply a message');
         }
 
+        // Fields to send
         $data = array_merge($this->data, array(
-            'token' => $this->token,
-            'user' => $user
+            'user' => $user,
         ));
 
+        // Send data to API
         $curl = curl_init();
-        curl_setopt($curl, CURLOPT_URL, $this->pushover_url);
+        curl_setopt($curl, CURLOPT_URL, $this->api_url);
         curl_setopt($curl, CURLOPT_POST, true);
         curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         $result = json_decode(curl_exec($curl), true);
         curl_close($curl);
 
-        return isset($result['status']) && $result['status'] == 1;
+        return isset($result['status']) && (int) $result['status'] === 1;
     }
 }

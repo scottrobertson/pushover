@@ -92,4 +92,19 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         $client->message = 'hi';
         $push = $client->push('test');
     }
+
+    public function testPushMultiple()
+    {
+        $client = new Client(array(
+            'token' => '',
+            'user' => ''
+        ));
+
+        $this->assertTrue(is_object($client));
+        $client->message = 'hi';
+        $push = $client->pushMultiple(array(
+            'test',
+            'test2'
+        ));
+    }
 }

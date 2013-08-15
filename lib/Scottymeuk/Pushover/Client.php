@@ -4,10 +4,23 @@ namespace Scottymeuk\Pushover;
 
 class Client
 {
+    /**
+     * The pushover.net endpoint
+     * @var string
+     */
     public $pushover_url = 'https://api.pushover.net/1/messages.json';
-    public $token = null;
+
+    /**
+     * The token to auth requests with
+     * @var string
+     */
+    public $token;
     public $data = array();
 
+    /**
+     * Class constructor to gather token and url
+     * @param array $options Array containing token and url
+     */
     public function __construct($options = array())
     {
         if (! isset($options['token'])) {
@@ -20,11 +33,21 @@ class Client
         }
     }
 
+    /**
+     * Magic __set method
+     * @param string $key  The variable name
+     * @param string|array $data The data to store against the key
+     */
     public function __set($key, $data)
     {
         $this->data[$key] = $data;
     }
 
+    /**
+     * Magic __get method
+     * @param  string $key Which variable should we return?
+     * @return sting|array      The data to return
+     */
     public function __get($key)
     {
         if (! isset($this->data[$key])) {
@@ -34,11 +57,39 @@ class Client
         return $this->data[$key];
     }
 
+    /**
+     * isset() magic method
+     * @param  string  $key Variable name
+     * @return boolean      Does it exist?
+     */
     public function __isset($key)
     {
         return isset($this->data[$key]);
     }
 
+    /**
+     * Push to multiple users
+     * @param  Array  $users Array of users
+     * @return bool        Did any of them fail?
+     */
+    public function pushMultiple(Array $users)
+    {
+        $failed = array();
+        foreach ($users as $user) {
+            $push = $this->push($user);
+            if (! $push) {
+                $failed[] = $user;
+            }
+        }
+
+        return !count($failed);
+    }
+
+    /**
+     * Push a notification to a specific user
+     * @param  string $user The user token
+     * @return bool       Did the notification send or not?
+     */
     public function push($user)
     {
         if (! isset($this->data['message'])) {

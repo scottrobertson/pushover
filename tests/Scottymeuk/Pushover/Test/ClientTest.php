@@ -19,11 +19,11 @@ class ClientTest extends TestCase
     {
         $client = new Client(array(
             'token' => '',
-            'url' => 'http://google.com'
+            'api' => 'http://google.com'
         ));
 
         $this->assertTrue(is_object($client));
-        $this->assertEquals('http://google.com', $client->pushover_url);
+        $this->assertEquals('http://google.com', $client->getApiUrl());
     }
 
     public function testInitFail()

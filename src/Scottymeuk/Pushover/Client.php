@@ -124,9 +124,12 @@ class Client
         }
 
         // Fields to send
-        $data = array_merge($this->data, array(
-            'user' => $user,
-        ));
+        $data = array_merge(
+            $this->data,
+            array(
+                'user' => $user,
+            )
+        );
 
         // Send data to API
         $curl = curl_init();

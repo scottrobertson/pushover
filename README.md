@@ -11,7 +11,6 @@ A simple PHP library for pushover.net. It essentially just wraps curl, and makes
  - PHP >= 5.3.3
  - Curl PHP Driver
 
-
 ## Example
 
 ```php

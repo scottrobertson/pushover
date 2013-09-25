@@ -1,7 +1,7 @@
 Pushover
 ========
 
-[![Build Status](https://travis-ci.org/scottymeuk/pushover.png?branch=master)](https://travis-ci.org/scottymeuk/pushover)
+[![Build Status](https://travis-ci.org/scottrobertson/pushover.png?branch=master)](https://travis-ci.org/scottrobertson/pushover)
 [![Total Downloads](https://poser.pugx.org/scottymeuk/pushover/d/total.png)](https://packagist.org/scottymeuk/pushover)
 [![Version](https://poser.pugx.org/scottymeuk/pushover/version.png)](https://packagist.org/scottymeuk/pushover)
 

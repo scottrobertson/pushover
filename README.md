@@ -2,8 +2,8 @@ Pushover
 ========
 
 [![Build Status](https://travis-ci.org/scottrobertson/pushover.png?branch=master)](https://travis-ci.org/scottrobertson/pushover)
-[![Total Downloads](https://poser.pugx.org/scottymeuk/pushover/d/total.png)](https://packagist.org/scottymeuk/pushover)
-[![Version](https://poser.pugx.org/scottymeuk/pushover/version.png)](https://packagist.org/scottymeuk/pushover)
+[![Total Downloads](https://poser.pugx.org/scottymeuk/pushover/d/total.png)](https://packagist.org/packages/scottymeuk/pushover)
+[![Version](https://poser.pugx.org/scottymeuk/pushover/version.png)](https://packagist.org/packages/scottymeuk/pushover)
 
 A simple PHP library for pushover.net. It essentially just wraps curl, and makes it a bit easier to send push notifications. The main reason for building this was to allow pushing to mulitple users easily.
 

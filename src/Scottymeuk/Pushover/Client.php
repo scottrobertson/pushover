@@ -140,6 +140,10 @@ class Client
         $result = json_decode(curl_exec($curl), true);
         curl_close($curl);
 
+        if (isset($result['errors'])) {
+            throw new Exception($result['errors'][0]);
+        }
+
         return isset($result['status']) && (int) $result['status'] === 1;
     }
 }
